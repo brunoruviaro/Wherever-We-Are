@@ -1,0 +1,131 @@
+Wherever we are, what we hear is mostly noise. When we ignore it, it disturbs us. When we listen to it, we find it fascinating. The sound of a truck at fifty mph. Static between the stations. Rain. We want to capture and control these sounds, to use them, not as sound effects, but as musical instruments.
+
+Unique:43  Total:57
+Freq.	Word
+1	WHEREVER
+6	WE
+1	ARE
+1	WHAT
+1	HEAR
+1	IS
+1	MOSTLY
+1	NOISE
+2	WHEN
+1	IGNORE
+4	IT
+1	DISTURBS
+1	US
+1	LISTEN
+3	TO
+1	FIND
+1	FASCINATING
+2	THE
+2	SOUND
+1	OF
+1	A
+1	TRUCK
+1	AT
+1	FIFTY
+1	MPH
+1	STATIC
+1	BETWEEN
+1	STATIONS
+1	RAIN
+1	WANT
+1	CAPTURE
+1	AND
+1	CONTROL
+1	THESE
+1	SOUNDS
+1	USE
+1	THEM
+1	NOT
+2	AS
+1	EFFECTS
+1	BUT
+1	MUSICAL
+1	INSTRUMENTS
+
+
+=======================================================
+
+
+Unique words:43  Total words:57
+Freq.	Word
+6	WE
+4	IT
+3	TO
+2	WHEN
+2	THE
+2	SOUND
+2	AS
+1	NOISE
+1	WHEREVER
+1	IGNORE
+1	ARE
+1	DISTURBS
+1	US
+1	LISTEN
+1	WHAT
+1	FIND
+1	FASCINATING
+1	HEAR
+1	IS
+1	OF
+1	A
+1	TRUCK
+1	AT
+1	FIFTY
+1	MPH
+1	STATIC
+1	BETWEEN
+1	STATIONS
+1	RAIN
+1	WANT
+1	CAPTURE
+1	AND
+1	CONTROL
+1	THESE
+1	SOUNDS
+1	USE
+1	THEM
+1	NOT
+1	MOSTLY
+1	EFFECTS
+1	BUT
+1	MUSICAL
+1	INSTRUMENTS
+
+
+=======================================================
+
+Freq.	Letter
+31	t
+29	e
+22	s
+20	n
+18	i
+16	a
+14	o
+11	u
+10	r
+10	h
+8	w
+7	f
+7	c
+6	d
+5	m
+4	W
+4	l
+3	b
+2	p
+2	g
+2	y
+1	k
+1	S
+1	v
+1	T
+1	R
+
+ABSENT: j, q, x, z
+
