@@ -5,28 +5,36 @@
 
 // Nothing needs to be changed in this file.
 // All parameters can now be controlled directly through the Player patch.
-// Accepts both mono and stereo samples. Calls appropriate Synth accordingly.
-// Master Volume control available (controllable from main Player patch).
+// MONO FILES.
 
+
+s.waitForBoot({
+
+// Free all existing buffers
 Buffer.freeAll;
 
-~bufferArray = ("samples/*.wav".resolveRelative).pathMatch.collect { |i| Buffer.read(s, i)};
+
+// Create bufferArray with 128 slots (so it's easy to think of midinotes)
+~bufferArray = Array.newClear(128);
+
+
+// Load all samples (sound files should be named from their midinote number, like 060.wav).
+// Array index becomes the same as midinote number.
+
+"samples/prepared/*.wav".resolveRelative.pathMatch.do({ |path|
+    // only works if file name has 3 digits, like 060.wav
+    var midinote = path.keep(-7).keep(3).asInteger;
+    ~bufferArray[midinote] = Buffer.read(s, path);
+    midinote.postln;
+});
+
 
 // Create a SynthDef to play samples
 SynthDef("qwerty-mono-sample-playback", {
-	arg bufnum = 0, rate = 1; // default values
+	arg buffer = 0, rate = 1;
 	var out;
-	//	out = SinOsc.ar(freq)*0.1;
-	out = PlayBuf.ar(1, bufnum, rate, doneAction: 2);
+	out = PlayBuf.ar(1, buffer, BufRateScale.kr(buffer) * rate, doneAction: 2);
 	Out.ar(0, [out, out] * 0.5)
-}).add;
-
-SynthDef("qwerty-stereo-sample-playback", {
-	arg bufnum = 0, rate = 1; // default values
-	var out;
-	//	out = SinOsc.ar(freq)*0.1;
-	out = PlayBuf.ar(2, bufnum, rate, doneAction: 2);
-	Out.ar(0, out)
 }).add;
 
 ["Number of Samples Loaded Successfully: " ++ ~bufferArray.size].postln;
@@ -48,3 +56,5 @@ SynthDef("masterAmp", {arg inbus = 0, amp = 1;
 //////////////////////
 
 //b.media.size
+
+});

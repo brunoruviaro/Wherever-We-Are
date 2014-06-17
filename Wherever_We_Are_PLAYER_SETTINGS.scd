@@ -15,6 +15,7 @@ var key_A = 65; // unicode for character "A" (capital A)
 var key_Z = 90; // unicode for character "Z" (capital Z)
 var key_0 = 48; // unicode for character "0" (zero)
 var key_9 = 57; // unicode for character "9" (nine)
+
 var len = 900; // typing window size: length
 var hi = 100; // typing window size: height
 var pointer = 0;
@@ -29,17 +30,8 @@ var tex = StaticText(win, Rect(5, 5, len-10, hi-10)).focus(true);
 
 // What to do at each key press
 tex.keyDownAction =	{ arg view, char, modifiers, unicode, keycode;
-	var bufnum, this_rate;
+	var flag, this_rate = 1;
 	var sentence = ~splitCage[~player];
-
-	case
-	{ (unicode >= key_A) && (unicode <= key_Z) } { bufnum = unicode - key_A; this_rate = 0.6 * ~transp.value }
-	{ (unicode >= key_a) && (unicode <= key_z) } { bufnum = unicode - key_a; this_rate = 1 * ~transp.value }
-	{ (unicode >= key_0) && (unicode <= key_9) } { bufnum = rrand(0, ~bufferArray.size-1); this_rate = 5 }
-	{ (unicode >= 33) && (unicode <= 127) } { bufnum = rrand(0, ~bufferArray.size-1); this_rate = 2 }
-	{ true } {bufnum = -1}; // flag: not a letter nor number; don't play anything
-
-
 /*
 
 	If typed character matches the next character of the sentence:
@@ -57,10 +49,15 @@ tex.keyDownAction =	{ arg view, char, modifiers, unicode, keycode;
 	if(char.asString == sentence.at(pointer).asString,
 		{
 			destination.sendMsg("/screen", pointer + ~sentenceIndex[~player]);
-			if(bufnum >= 0, { Synth("qwerty-mono-sample-playback", [\bufnum, bufnum, \rate, this_rate]) });
+			if(this_rate >= 0,
+				{
+					~bufferArray[~sonata2[pointer]].postln;
+					Synth("qwerty-mono-sample-playback", [
+						\buffer, ~bufferArray[~sonata2[pointer]],
+						\rate, this_rate])
+			});
 			pointer = (pointer + 1) % sentence.size;
 			tex.string = sentence.keep(pointer);
-			bufnum.postln;
 
 		},
 		{
@@ -71,11 +68,22 @@ tex.keyDownAction =	{ arg view, char, modifiers, unicode, keycode;
 				{ tex.stringColor = Color.black }.defer;
 			}.fork;
 
-			{ Blip.ar(1000, mul: EnvGen.kr(Env.linen(0.01, 0.2, 0.01), doneAction: 2)) }.play;
+			{ Blip.ar(100, mul: EnvGen.kr(Env.linen(0.01, 0.2, 0.01), doneAction: 2)) }.play;
 		}
 	);
 
-	/*
+};
+
+tex.font_(Font("Courier", 30));
+tex.stringColor_(Color.black);
+win.front;
+
+// End of File
+
+
+
+
+/*
 	case
 	{(unicode >= key_A) && (unicode <= key_Z)} {bufnum = unicode - key_A; this_rate = 0.6 * ~transp.value}
 	{(unicode >= key_a) && (unicode <= key_z)} {bufnum = unicode - key_a; this_rate = 1 * ~transp.value}
@@ -95,9 +103,3 @@ tex.keyDownAction =	{ arg view, char, modifiers, unicode, keycode;
 		" ".postln;
 	});
 	*/
-
-};
-
-tex.font_(Font("Courier", 30));
-tex.stringColor_(Color.black);
-win.front;

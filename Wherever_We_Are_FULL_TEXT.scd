@@ -35,6 +35,12 @@
 	~cage.find("to use") // player 6
 ];
 
+
+// Note sequences (midinotes)
+~sonata2 = [76, 77, 78, 81, 83, 83, 81, 78, 77, 76, 70, 71, 72, 70, 71, 72, 75, 75, 81, 84, 87, 91, 93, 93, 91, 91, 87, 87, 84, 84, 81, 84, 79, 77, 84, 79, 79, 77, 75, 75, 75, 58, 59, 58, 59, 58 ];
+
+
+
 "Wherever We Are - full text loaded.".postln;
 "".postln;
 
