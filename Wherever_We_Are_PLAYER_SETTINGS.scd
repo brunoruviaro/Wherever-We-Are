@@ -36,7 +36,7 @@ tex.keyDownAction =	{ arg view, char, modifiers, unicode, keycode;
 
 	If typed character matches the next character of the sentence:
 	- send character to remote destination,
-	- play sample,
+	- play sample (a "note" from the corresponding player score)
 	- increment pointer,
 	- post updated string on local window,
 
@@ -51,13 +51,14 @@ tex.keyDownAction =	{ arg view, char, modifiers, unicode, keycode;
 			destination.sendMsg("/screen", pointer + ~sentenceIndex[~player]);
 			if(this_rate >= 0,
 				{
-					~bufferArray[~sonata2[pointer]].postln;
 					Synth("qwerty-mono-sample-playback", [
-						\buffer, ~bufferArray[~sonata2[pointer]],
+						\buffer, ~bufferArray[~score[~player][pointer]],
 						\rate, this_rate])
 			});
 			pointer = (pointer + 1) % sentence.size;
 			tex.string = sentence.keep(pointer);
+			["buffer", ~bufferArray[~score[~player][pointer]] ].postln;
+			[ "note", ~score[~player][pointer] ].postln;
 
 		},
 		{
@@ -67,8 +68,13 @@ tex.keyDownAction =	{ arg view, char, modifiers, unicode, keycode;
 				0.3.wait;
 				{ tex.stringColor = Color.black }.defer;
 			}.fork;
+			// if typo, play a noise (rain, truck, static)
+			Synth("qwerty-mono-sample-playback", [
+				\buffer, ~bufferArray[ [40, 47, 48, 52, 54, 66, 69, 79, 82, 86, 102].choose ],
+				\rate, rrand(0.8, 1.5) ]);
 
-			{ Blip.ar(100, mul: EnvGen.kr(Env.linen(0.01, 0.2, 0.01), doneAction: 2)) }.play;
+
+
 		}
 	);
 

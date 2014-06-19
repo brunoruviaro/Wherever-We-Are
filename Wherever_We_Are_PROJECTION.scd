@@ -80,7 +80,7 @@ CmdPeriod.add({ ~letterArray.do({ |i| i.stringColor = Color(0, 0, 0, 0) }) });
 /*
 p = Pbind(
 	\type, \rest,
-	\letter, Pshuf((0..a.size-1), 1),
+	\letter, Pshuf((0..~letterArray.size-1), 1),
 	\fade, Pfunc( { |e| ~fade.value(e.at(\letter), 5) }),
 	\dur, Pwhite(0.02, 0.05)
 ).play;
