@@ -30,13 +30,13 @@ var tex = StaticText(win, Rect(5, 5, len-10, hi-10)).focus(true);
 
 // What to do at each key press
 tex.keyDownAction =	{ arg view, char, modifiers, unicode, keycode;
-	var flag, this_rate = 1;
+	var this_rate = 1;
 	var sentence = ~splitCage[~player];
 /*
 
 	If typed character matches the next character of the sentence:
-	- send character to remote destination,
 	- play sample (a "note" from the corresponding player score)
+	- send character to remote destination,
 	- increment pointer,
 	- post updated string on local window,
 
@@ -48,16 +48,27 @@ tex.keyDownAction =	{ arg view, char, modifiers, unicode, keycode;
 */
 	if(char.asString == sentence.at(pointer).asString,
 		{
+			var index;
+			var midinote = ~score[~player][pointer];
+
+			// if midinote from score is one of the UNPREPARED notes (for which we have samples),
+			// then play just one of the highest available notes, transposed up,
+			// else play requested midinote.
+			if([40, 47, 48, 52, 54, 66, 69, 79, 82, 86, 102].includes(midinote),
+				{ index = [100, 101].choose; this_rate = { rrand(2, 3) }.value },
+				{ index = midinote });
+
+			Synth("qwerty-mono-sample-playback", [
+				\buffer, ~bufferArray[index],
+				\rate, this_rate,
+				\amp, { rrand(0.02, 0.5) }.value ]);
+
+			// send character to remote screen.
 			destination.sendMsg("/screen", pointer + ~sentenceIndex[~player]);
-			if(this_rate >= 0,
-				{
-					Synth("qwerty-mono-sample-playback", [
-						\buffer, ~bufferArray[~score[~player][pointer]],
-						\rate, this_rate])
-			});
 			pointer = (pointer + 1) % sentence.size;
 			tex.string = sentence.keep(pointer);
-			["buffer", ~bufferArray[~score[~player][pointer]] ].postln;
+
+			// ["buffer", ~bufferArray[~score[~player][pointer]] ].postln;
 			[ "note", ~score[~player][pointer] ].postln;
 
 		},
@@ -71,7 +82,10 @@ tex.keyDownAction =	{ arg view, char, modifiers, unicode, keycode;
 			// if typo, play a noise (rain, truck, static)
 			Synth("qwerty-mono-sample-playback", [
 				\buffer, ~bufferArray[ [40, 47, 48, 52, 54, 66, 69, 79, 82, 86, 102].choose ],
-				\rate, rrand(0.8, 1.5) ]);
+				\rate, { rrand(0.8, 1.5) }.value,
+				\amp, { rrand(0.1, 0.2) }.value
+
+			]);
 
 
 

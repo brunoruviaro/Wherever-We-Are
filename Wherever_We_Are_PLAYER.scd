@@ -3,10 +3,10 @@
 //
 // PLAYER
 
-~player = 1;
+~player = 4;
 ~transp = 1;
 
 "Wherever_We_Are_SYNTH.scd".loadRelative;
 "Wherever_We_Are_PLAYER_SETTINGS.scd".loadRelative;
 
-// s.plotTree
+// s.plotTree,

@@ -31,10 +31,10 @@ Buffer.freeAll;
 
 // Create a SynthDef to play samples
 SynthDef("qwerty-mono-sample-playback", {
-	arg buffer = 0, rate = 1;
+	arg buffer = 0, rate = 1, amp = 0.5;
 	var out;
 	out = PlayBuf.ar(1, buffer, BufRateScale.kr(buffer) * rate, doneAction: 2);
-	Out.ar(0, [out, out] * 0.5)
+	Out.ar(0, [out, out] * amp)
 }).add;
 
 ["Number of Samples Loaded Successfully: " ++ ~bufferArray.size].postln;
