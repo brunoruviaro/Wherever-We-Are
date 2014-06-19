@@ -29,39 +29,62 @@ w.view.decorator = FlowLayout( w.view.bounds, margin: 0@0, gap: 9@18 );
 	txt.string = ~cage[count];
 });
 
+// Array for storing Routines (controlling visual action of each letter)
+~fadeFunctionArray = Array.newClear(~letterArray.size);
 
-// Trigger and Fade function
+// Trigger and Fade function (for when players send the right character)
 ~fade = { arg letterIndex, fadeTime;
-	var rout, alpha = 1;
+	var routine, alpha = 1;
 
-	rout = Routine { while( { alpha > 0 },
-			{
+	routine = Routine { while( { alpha > 0 },
+		{
 			{ ~letterArray[letterIndex].stringColor = Color(0, 0, 0, alpha) }.defer;
-				alpha = alpha - 0.01;
-				(fadeTime/100).wait;
-			}
+			alpha = max(0, alpha - 0.02);
+			(fadeTime/50).wait;
+		}
 	)};
 
-	// Trigger & fade only if letter is currently invisible:
-	{ if(
-		~letterArray[letterIndex].stringColor.alpha==0,
-		{ rout.play },
-		{"nothing"} )
-	}.defer;
+	~fadeFunctionArray[letterIndex].stop;
+	~fadeFunctionArray[letterIndex] = routine.play;
 
 };
 
+// Typo and Blink function (for when players send a typo)
+~typo = { arg letterIndex;
+
+	~fadeFunctionArray[letterIndex].stop;
+	~fadeFunctionArray[letterIndex] = Routine {
+		{ ~letterArray[letterIndex].stringColor = Color.red }.defer;
+		0.5.wait;
+		{ ~letterArray[letterIndex].stringColor = Color(0, 0, 0, 0) }.defer;
+	}.play;
+
+};
+
+// Audience participation function (for audience laptops)
+~audience = { arg letterIndex;
+	var routine, alpha = 1, fadeTime = 2;
+
+	routine = Routine { while( { alpha > 0 },
+		{
+			{ ~letterArray[letterIndex].stringColor = Color.yellow(alpha: alpha) }.defer;
+			alpha = alpha - 0.02;
+			(fadeTime/50).wait;
+		}
+	)};
+
+	~fadeFunctionArray[letterIndex].stop;
+	~fadeFunctionArray[letterIndex] = routine.play;
+
+};
+
+
 // Listen for OSC messages from players:
-OSCdef(\triggerLetters, { |msg| ~fade.value(msg[1], 5) }, '/screen');
-OSCdef(\triggerTypo, { |msg|
-	{
-		{ ~letterArray[msg[1]].stringColor = Color.red }.defer;
-		0.2.wait;
-		{ ~letterArray[msg[1]].stringColor = Color(0, 0, 0, 0) }.defer;
+OSCdef(\triggerLetters, { |msg| ~fade.value(msg[1], 15) }, '/screen');
 
-	}.fork;
-}, '/screen/typo');
+OSCdef(\triggerTypo, { |msg| ~typo.value(msg[1]) }, '/screen/typo');
 
+OSCdef(\triggerAudience, { |msg| ~audience.value(msg[1]) }, '/screen/audience');
 
 // Clean up letters on ctrl + period
 // (make all letters invisible)
@@ -79,9 +102,38 @@ CmdPeriod.add({ ~letterArray.do({ |i| i.stringColor = Color(0, 0, 0, 0) }) });
 // Test
 /*
 p = Pbind(
-	\type, \rest,
-	\letter, Pshuf((0..~letterArray.size-1), 1),
-	\fade, Pfunc( { |e| ~fade.value(e.at(\letter), 5) }),
-	\dur, Pwhite(0.02, 0.05)
+\type, \rest,
+\letter, Pshuf((0..~letterArray.size-1), 1),
+\fade, Pfunc( { |e| ~fade.value(e.at(\letter), 5) }),
+\dur, Pwhite(0.02, 0.05)
 ).play;
+*/
+
+
+
+
+/*
+
+
+// OLD Trigger and Fade function
+~fade = { arg letterIndex, fadeTime;
+var rout, alpha = 1;
+
+rout = Routine { while( { alpha > 0 },
+{
+{ ~letterArray[letterIndex].stringColor = Color(0, 0, 0, alpha) }.defer;
+alpha = alpha - 0.02;
+(fadeTime/50).wait;
+}
+)};
+
+// Trigger & fade only if letter is currently invisible:
+{ if(
+~letterArray[letterIndex].stringColor.alpha==0,
+{ rout.play },
+{"nothing"} )
+}.defer;
+
+};
+
 */

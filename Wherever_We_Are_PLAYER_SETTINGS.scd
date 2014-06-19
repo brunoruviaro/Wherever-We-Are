@@ -3,9 +3,6 @@
 //
 // PLAYER SETTINGS
 
-// Load ~cage full text
-var dummy = "Wherever_We_Are_FULL_TEXT.scd".loadRelative;
-
 // NetAddr of projection laptop (target)
 var destination = NetAddr("127.0.0.1", 57120);
 
@@ -32,7 +29,7 @@ var tex = StaticText(win, Rect(5, 5, len-10, hi-10)).focus(true);
 tex.keyDownAction =	{ arg view, char, modifiers, unicode, keycode;
 	var this_rate = 1;
 	var sentence = ~splitCage[~player];
-/*
+	/*
 
 	If typed character matches the next character of the sentence:
 	- play sample (a "note" from the corresponding player score)
@@ -45,65 +42,70 @@ tex.keyDownAction =	{ arg view, char, modifiers, unicode, keycode;
 	- send red blink to destination
 	- play a noise
 
-*/
-	if(char.asString == sentence.at(pointer).asString,
+	*/
+
+	if(unicode>0, // ignore shift key
+
 		{
-			var index;
-			var midinote = ~score[~player][pointer];
+			if(char.asString == sentence.at(pointer).asString,
+				{
+					var index;
+					var midinote = ~score[~player][pointer];
 
-			// if midinote from score is one of the UNPREPARED notes (for which we have samples),
-			// then play just one of the highest available notes, transposed up,
-			// else play requested midinote.
-			if([40, 47, 48, 52, 54, 66, 69, 79, 82, 86, 102].includes(midinote),
-				{ index = [100, 101].choose; this_rate = { rrand(2, 3) }.value },
-				{ index = midinote });
+					// if midinote from score is one of the UNPREPARED notes (for which we have samples),
+					// then play just one of the highest available notes, transposed up,
+					// else play requested midinote.
+					if([40, 47, 48, 52, 54, 66, 69, 79, 82, 86, 102].includes(midinote),
+						{ index = [100, 101].choose; this_rate = { rrand(2, 3) }.value },
+						{ index = midinote });
 
-			Synth("qwerty-mono-sample-playback", [
-				\buffer, ~bufferArray[index],
-				\rate, this_rate,
-				\amp, { rrand(0.02, 0.5) }.value ]);
+					Synth("qwerty-mono-sample-playback", [
+						\buffer, ~bufferArray[index],
+						\rate, this_rate,
+						\amp, { rrand(0.02, 0.5) }.value ]);
 
-			// send character to remote screen.
-			destination.sendMsg("/screen", pointer + ~sentenceIndex[~player]);
-			pointer = (pointer + 1) % sentence.size;
-			tex.string = sentence.keep(pointer);
+					// send character to remote screen.
+					destination.sendMsg("/screen", pointer + ~sentenceIndex[~player]);
+					pointer = (pointer + 1) % sentence.size;
+					tex.string = sentence.keep(pointer);
 
-			// ["buffer", ~bufferArray[~score[~player][pointer]] ].postln;
-			[ "note", ~score[~player][pointer] ].postln;
+					// ["buffer", ~bufferArray[~score[~player][pointer]] ].postln;
+					[ "note", ~score[~player][pointer] ].postln;
 
-		},
-		{
-			{
-				destination.sendMsg("/screen/typo", pointer + ~sentenceIndex[~player]);
-				{ tex.stringColor = Color.red }.defer;
-				0.3.wait;
-				{ tex.stringColor = Color.black }.defer;
-			}.fork;
-			// if typo, play a noise (rain, truck, static)
-			Synth("qwerty-mono-sample-playback", [
-				\buffer, ~bufferArray[ [40, 47, 48, 52, 54, 66, 69, 79, 82, 86, 102].choose ],
-				\rate, { rrand(0.8, 1.5) }.value,
-				\amp, { rrand(0.1, 0.2) }.value
+				},
+				{
+					{
+						destination.sendMsg("/screen/typo", pointer + ~sentenceIndex[~player]);
+						{ tex.stringColor = Color.red }.defer;
+						0.3.wait;
+						{ tex.stringColor = Color.black }.defer;
+					}.fork;
+					// if typo, play a noise (rain, truck, static)
+					Synth("qwerty-mono-sample-playback", [
+						\buffer, ~bufferArray[ [40, 47, 48, 52, 54, 66, 69, 79, 82, 86, 102].choose ],
+						\rate, { rrand(0.8, 1.5) }.value,
+						\amp, { rrand(0.1, 0.2) }.value
 
-			]);
+					]);
 
 
 
-		}
-	);
+				}
+			);
+	})
 
 };
 
-tex.font_(Font("Courier", 30));
-tex.stringColor_(Color.black);
-win.front;
+	tex.font_(Font("Courier", 30));
+	tex.stringColor_(Color.black);
+	win.front;
 
-// End of File
-
-
+	// End of File
 
 
-/*
+
+
+	/*
 	case
 	{(unicode >= key_A) && (unicode <= key_Z)} {bufnum = unicode - key_A; this_rate = 0.6 * ~transp.value}
 	{(unicode >= key_a) && (unicode <= key_z)} {bufnum = unicode - key_a; this_rate = 1 * ~transp.value}
@@ -114,12 +116,12 @@ win.front;
 	// Call appropriate synth (mono or stereo) and post some info:
 	if( (bufnum != -1), {
 
-		case
-		{b.media[bufnum].numChannels == 1} {Synth("qwerty-mono-sample-playback", [\bufnum, bufnum, \rate, this_rate])}
-		{b.media[bufnum].numChannels == 2} {Synth("qwerty-stereo-sample-playback", [\bufnum, bufnum, \rate, this_rate])};
+	case
+	{b.media[bufnum].numChannels == 1} {Synth("qwerty-mono-sample-playback", [\bufnum, bufnum, \rate, this_rate])}
+	{b.media[bufnum].numChannels == 2} {Synth("qwerty-stereo-sample-playback", [\bufnum, bufnum, \rate, this_rate])};
 
-		["Letter: "++ char, "Playback Speed: " ++ this_rate, "Number of Channels: " ++ b.media[bufnum].numChannels].postln;
-		["Sound File: " ++ b.media[bufnum].path].postln;
-		" ".postln;
+	["Letter: "++ char, "Playback Speed: " ++ this_rate, "Number of Channels: " ++ b.media[bufnum].numChannels].postln;
+	["Sound File: " ++ b.media[bufnum].path].postln;
+	" ".postln;
 	});
 	*/
