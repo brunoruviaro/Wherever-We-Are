@@ -11,7 +11,7 @@ var destination, win, localLetterArray, tex;
 // var dummy2 = Window.closeAll;
 
 // NetAddr of projection laptop (target)
-destination = NetAddr("127.0.0.1", 57120);
+destination = NetAddr("192.168.1.109", 57120);
 
 // Typing window
 win = Window.new(
