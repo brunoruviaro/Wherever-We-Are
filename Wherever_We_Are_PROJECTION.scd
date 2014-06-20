@@ -8,23 +8,25 @@
 
 // Load full text (envir variable ~cage)
 "Wherever_We_Are_FULL_TEXT.scd".loadRelative;
+// Screen resolutions (open that file to change it)
+"Wherever_We_Are_SCREEN_RESOLUTIONS.scd".loadRelative;
 
 // Close older windows first
 Window.closeAll;
 
 // Create new window
-w = Window.new("fullscreen", Window.screenBounds).front;
+w = Window.new("fullscreen", Rect(0, 0, ~screenWidth, ~screenHeight)).front;
 w.background = Color.white;
 
 // The numbers are the gaps and margins between objects inside window
-w.view.decorator = FlowLayout( w.view.bounds, margin: 0@0, gap: 9@18 );
+w.view.decorator = FlowLayout( w.view.bounds, margin: ~margin, gap: ~gap );
 
 // Letter containers
 ~letterArray = Array.fill(~cage.size, { arg count;
-	var txt = StaticText(w.view, 40@50);
+	var txt = StaticText(w.view, ~bounds);
 	txt.background = Color.white;
-	txt.stringColor = Color(0, 0, 0, 0); // transparent
-	txt.font = Font("Courier", 52, false);
+	txt.stringColor = Color(0, 0, 0, 0.5); // transparent
+	txt.font = Font("Courier", ~fontSize, false);
 	txt.align = \center;
 	txt.string = ~cage[count];
 });
