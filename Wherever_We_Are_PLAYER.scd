@@ -4,7 +4,6 @@
 // PLAYER
 
 ~player = 1;
-~transp = 1;
 
 "Wherever_We_Are_FULL_TEXT.scd".loadRelative;
 "Wherever_We_Are_SYNTH.scd".loadRelative;
