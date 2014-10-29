@@ -21,7 +21,7 @@ Buffer.freeAll;
 // Load all samples (sound files should be named from their midinote number, like 060.wav).
 // Array index becomes the same as midinote number.
 
-"samples/prepared/*.wav".resolveRelative.pathMatch.do({ |path|
+"samples/*.wav".resolveRelative.pathMatch.do({ |path|
     // only works if file name has 3 digits, like 060.wav
     var midinote = path.keep(-7).keep(3).asInteger;
     ~bufferArray[midinote] = Buffer.read(s, path);
