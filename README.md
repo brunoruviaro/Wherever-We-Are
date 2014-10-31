@@ -39,7 +39,14 @@ The full quote is:
 * During performance, you will be controling fade time of the letters.
  
 #### TYPING PLAYERS
-Projection player starts projection on screen. A gray empty screen is displayed. Fade time is set to a medium value (for example, 15 seconds).
+
+* Go to a terminal, find your way to the Wherever-We-Are folder, and run `sclang Wherever_We_Are_PLAYER.scd" from there.
+* Wait a few seconds as the program starts up (you will see updates on the terminal window).
+* If all goes well, you should now have the small "typing window" where you will type Cage's excerpt.
+
+The advantage of starting up the program via terminal (as opposed to actually opening the file) is that you avoid accidentally introducing a typo into the code, which might cause errors and inevitable panic just before a performance.
+
+### How to play
 
 Typing players start typing their fragment of the quote, slowly. Each player has a specific segment of the text assigned to them: it is conveniently used as the title of their individual typing window. They should simply type that sequence of characters in order. If they make a mistake, a different sound is played. Spaces, commas, and periods are also valid characters that need to be typed in the right sequence.
 
