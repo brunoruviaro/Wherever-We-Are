@@ -24,12 +24,21 @@ The full quote is:
 
 2. DO ONCE: The Wherever-We-Are folder (clone of this github folder) should contain all scd files, plus a single subfolder with all the samples. This subfolder should be called "samples" (all lowercase), and can be downloaded from: https://ccrma.stanford.edu/~ruviaro/audio/wherever_we_are/samples.zip
 
-3. DO ONCE: Configure proper screen resolution for the projection in the file "Wherever_We_Are_SCREEN_RESOLUTIONS.scd". A couple of common resolutions are included by default. New resolutions can be easily created here to adapt for specific needs depending on the equipment used. Occasionally, it might be necessary to tweak font size, margin, gap between letters, etc so that the full screen projection shows the full quote evenly distributed on the screen. This file will eventually be loaded automatically, so you don't have to open this file every time.
+3. DO ONCE: Configure proper screen resolution for the projection in the file "Wherever_We_Are_SCREEN_RESOLUTIONS.scd". Two common resolutions are included by default (1024 x 768 and 1366 x 768). New resolutions can be easily created here to adapt for specific needs depending on the equipment used. Make sure only the desired resolution is commented out in the code. Occasionally, it might be necessary to tweak font size, margin, gap between letters, etc so that the full screen projection shows the full quote evenly distributed on the screen. This file will eventually be loaded automatically, so you don't have to open it every time.
 
-### How to play
+### Getting ready to play
 
-The projection laptop uses the file "Wherever_We_Are_PROJECTION.scd" to create the projection window. The projection window should be displayed in full screen mode on the wall or proper screen visible to the audience. Once the projection is up and running, the projection player opens the file "Wherever_We_Are_PROJECTION_FADETIME.scd". This file will be used to control fade time of the letters during performance.
+#### PROJECTION PLAYER
+
+* Do not use mirror screens (i.e., laptop screen separate from projection screen). 
+* Open file "Wherever_We_Are_PROJECTION.scd" to create the projection window.
+* Select all (ctrl+A), then evaluate (ctrl+Enter).
+* You should now see a gray, empty projection window displayed. Place it in the right location (projector screen).
+* Open file "Wherever_We_Are_PROJECTION_FADETIME.scd".
+* Run w.fullScreen if needed (this should hide Ubuntu's top bar from the projection screen)
+* During performance, you will be controling fade time of the letters.
  
+#### TYPING PLAYERS
 Projection player starts projection on screen. A gray empty screen is displayed. Fade time is set to a medium value (for example, 15 seconds).
 
 Typing players start typing their fragment of the quote, slowly. Each player has a specific segment of the text assigned to them: it is conveniently used as the title of their individual typing window. They should simply type that sequence of characters in order. If they make a mistake, a different sound is played. Spaces, commas, and periods are also valid characters that need to be typed in the right sequence.
