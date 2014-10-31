@@ -20,11 +20,13 @@ The full quote is:
 
 ### Preliminary set-up
 
-1. DO ONCE: Players open file "Where_We_Are_PLAYER.scd" to pick their unique player number (from 1 to 6). This is assigned to the variable ~player. In addition, players have to specify the IP address of the computer that will be projecting letters on the screen. This is assigned to the variable ~destination. Assuming IP address and player numbers won't change, there is no need to open this file again in rehearsals and concert.
+1. DO ONCE: Players open file "Where_We_Are_PLAYER.scd" to pick their unique player number (from 1 to 7). This is assigned to the variable ~player. In addition, players have to specify the IP address of the computer that will be projecting letters on the screen. This is assigned to the variable ~destination. Assuming IP address and player numbers won't change, there is no need to open this file again in rehearsals and concert.
 
 2. DO ONCE: The Wherever-We-Are folder (clone of this github folder) should contain all scd files, plus a single subfolder with all the samples. This subfolder should be called "samples" (all lowercase), and can be downloaded from: https://ccrma.stanford.edu/~ruviaro/audio/wherever_we_are/samples.zip
 
 3. DO ONCE: Configure proper screen resolution for the projection in the file "Wherever_We_Are_SCREEN_RESOLUTIONS.scd". Two common resolutions are included by default (1024 x 768 and 1366 x 768). New resolutions can be easily created here to adapt for specific needs depending on the equipment used. Make sure only the desired resolution is commented out in the code. Occasionally, it might be necessary to tweak font size, margin, gap between letters, etc so that the full screen projection shows the full quote evenly distributed on the screen. This file will eventually be loaded automatically, so you don't have to open it every time.
+
+4. Laptops need to be connected to a local network to exchange OSC messages.
 
 ### Getting ready to play
 
@@ -53,23 +55,29 @@ The advantage of starting up the program via terminal (as opposed to actually op
 
 ### How to play
 
-Typing players start typing their fragment of the quote, slowly. Each player has a specific segment of the text assigned to them: it is conveniently used as the title of their individual typing window. They should simply type that sequence of characters in order. If they make a mistake, a different sound is played. Spaces, commas, and periods are also valid characters that need to be typed in the right sequence.
+* Typing players 1-6 take care of typing actual excerpts of text. The letters will show up on the projection screen in the specific sequence forming Cage's quote.
+* Typing player 7 is free to type any text. These letters will show up on the projection screen in yellow, in random order.
+* Projection player simply changes the fade time of the letters at specific points in the piece (acting as a kind of conductor).
 
-Typing players gradually speed up the rate of typing. Individual volume levels may be controlled in real time using their audio interfaces.
+#### Sparse beginning
+* Players 1-6 start typing their fragment of the quote, slowly. Each player has a specific segment of the text assigned to them: it is conveniently used as the title of their individual typing window. They should simply type that sequence of characters in order. If they make a mistake, a different sound is played. Spaces, commas, and periods are also valid characters that need to be typed in the correct sequence.
+* Player 7 also starts typing slowly, being generally sparser than players 1-6.
+* Projection player simply sets fade time to a number around 10 or 15 seconds.
 
-Projection player occasionally decreases fade time little by little.
+#### Progression towards revealing the full text
 
-Loudest part of the piece is when all players are typing as fast as they can, while letter fade time is set to very short (say, 1 or 2 seconds). At this point Cage's quote is almost likely easy to read in its entirety on screen.
+* All typing players gradually speed up the rate of typing. Individual volume levels may be controlled in real time using their audio interfaces. It is up to the conductor to rehearse with the ensemble and suggest the right balance of volume.
+* Projection player occasionally decreases fade time little by little. The result is that letters disappear more quickly from screen, as the players speed up the typing.
+* Loudest and busiest part of the piece is when all players are typing as fast as they can, while letter fade time is set to very short (say, 1 or 2 seconds). At this point Cage's quote is likely to read in its entirety on screen, even though individual letters are all flashing in and out very quickly.
 
-Suddenly, projection player changes fade time to very long (for exampe, 30 or 40 seconds). Right after the change, projection player gives a cue to other players to slow down quickly so that texture becomes very rarified and filled with silence. It shouldn't take too long between the cue and the establishment rarified texture. The result on screen now is that sparse sounds trigger letters that stick around for a long time on screen.
+#### Break, then sparse ending
 
-Typing players type their sentence once or twice more, very sparse, then the piece ends with the last fading letters on screen.
+* Suddenly, projection player changes fade time to very long (for exampe, 30 or 40 seconds). At the sime time, projection player gives a cue to other players to slow down the typing immediately so that texture becomes very rarified and filled with silence. It shouldn't take too long between the cue and the establishment rarified texture. The result on screen now is that sparse sounds trigger letters that stick around for a long time on screen.
+* Typing players type their sentence once or twice more, very sparse, then the piece ends with the last fading letters on screen.
 
-The piece is open to variations or adaptations departing from this general shape.
+### Final comments
 
-### Optional "interference" laptops
-
-Two or more laptops may be given to other players, or the audience, to "interfere" with the projected letters. These laptops should use the file "Wherever_We_Are_AUDIENCE.scd". These players can type anything they want (any sequence of characters), and the effect will be of "erasure" or existing letters on the projection. Each typed letter will also play a sample, but these laptops may or may not be connected to speakers depending on the context and constraints of a given performance.
-
+* The piece is open to variations or adaptations departing from this general shape. 
+* Generally speaking, the role of player #7 (the random yellow letters) is to create a shadow of interference in what players 1-6 are doing. The specific result of player 7's typing is an "erasure" of existing letters on the projection. The sounds coming from player 7 are similar to those from players 1-6, but heavily filtered.
 
 
