@@ -1,4 +1,14 @@
-// Projection player can control fade times by
-// changing and re-evaluating this variable during performance:
+// =====================
+// PROJECTION PLAYER
+// =====================
 
-~fadeTime = 1316; // how many seconds it takes for a letter to fade out.
+w.fullScreen; // run this (ctrl+Enter) if needed. It should hides Ubuntu top bar in the projection screen.
+
+
+// =========================
+// Projection player can control fade times by changing
+// and re-evaluating this variable during performance:
+
+~fadeTime = 16;
+
+// =========================
