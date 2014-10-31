@@ -19,7 +19,7 @@ DO ONCE:
 
 {
 
-	~player = 2;
+	~player = 5;
 	("PLAYER NUMBER: " ++ ~player).postln;
 	1/2.wait;
 	~destination = "129.210.101.32";

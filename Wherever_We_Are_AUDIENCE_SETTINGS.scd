@@ -2,7 +2,7 @@
 // piece for laptop orchestra
 //
 // AUDIENCE PLAYER SETTINGS
-
+{
 var destination, win, localLetterArray, tex;
 
 // Init
@@ -11,7 +11,7 @@ var destination, win, localLetterArray, tex;
 // var dummy2 = Window.closeAll;
 
 // NetAddr of projection laptop (target)
-destination = NetAddr("192.168.1.109", 57120);
+destination = NetAddr(~destination, 57120);
 
 // Typing window
 win = Window.new(
@@ -70,7 +70,7 @@ tex.keyDownAction =	{ arg view, char, modifiers, unicode, keycode;
 		destination.sendMsg("/screen/audience", letterIndex);
 
 		// 3. Play a sample locally
-		Synth("qwerty-mono-sample-playback", [
+		Synth("qwerty-mono-sample-playback-FILTER", [
 			\buffer, ~bufferArray.reject{ |x| x.isNil }.choose,
 			\rate, { rrand(0.8, 1.0) },
 			\amp, { rrand(0.02, 0.5) }.value ]);
@@ -87,12 +87,4 @@ tex.keyDownAction =	{ arg view, char, modifiers, unicode, keycode;
 
 };
 
-// tex.font_(Font("Courier", 30));
-// tex.stringColor_(Color.black);
-// tex.string = "(type to make sounds and interact with the projection)";
-// win.front;
-
-// End of File
-
-/*
-
+}.defer;
