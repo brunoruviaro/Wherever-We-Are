@@ -3,7 +3,7 @@
 // =====================
 
 w.fullScreen; // run this (ctrl+Enter) if needed. It should hides Ubuntu top bar in the projection screen.
-
+// w.endFullScreen
 
 // =========================
 // Projection player can control fade times by changing
@@ -12,3 +12,5 @@ w.fullScreen; // run this (ctrl+Enter) if needed. It should hides Ubuntu top bar
 ~fadeTime = 16;
 
 // =========================
+
+
