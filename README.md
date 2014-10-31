@@ -22,7 +22,7 @@ The full quote is:
 
 1. Players open file "Where_We_Are_PLAYER.scd". Each player should have a unique number assigned to the variable ~player (from 1 to 6). The file "Where_We_Are_PLAYER_SETTINGS.scd" only needs to be opened once to adjust the proper IP address of the projection laptop (in the variable called "destination").
 
-2. The Wherever-We-Are folder should contain all scd files and a single subfolder with all the samples. This subfolder should be called "samples" (all lowercase). The audio files can be downloaded from:
+2. The Wherever-We-Are folder should contain all scd files and a single subfolder with all the samples. This subfolder should be called "samples" (all lowercase). The audio files can be downloaded from: https://ccrma.stanford.edu/~ruviaro/audio/wherever_we_are/samples.zip
 
 3. The projection laptop uses the file "Wherever_We_Are_PROJECTION.scd" to create the projection window. The projection window should be displayed in full screen mode on the wall or proper screen visible to the audience. The projection player controls fade time of the letters using the file "Wherever_We_Are_PROJECTION_FADETIME.scd" during performance.
 
