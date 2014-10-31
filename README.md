@@ -40,11 +40,11 @@ The full quote is:
  
 #### TYPING PLAYERS
 
-* Go to a terminal, find your way to the Wherever-We-Are folder, and run `sclang Wherever_We_Are_PLAYER.scd` from there.
+* Go to a terminal, find your way to the Wherever-We-Are folder, and run the program from there (see below).
 * Wait a few seconds as the program starts up (you will see updates on the terminal window).
 * If all goes well, you should now have the small "typing window" where you will type Cage's excerpt.
 
-Example: assuming the Wherever-We-Are folder was saved under Music/SuperCollider/, the terminal commands would be:
+Example: assuming the Wherever-We-Are folder was saved under Music/SuperCollider/, the two terminal commands would be:
 ```
 cd Music/SuperCollider/Wherever-We-Are/
 sclang Wherever_We_Are_PLAYER.scd
