@@ -2,7 +2,7 @@
 // piece for laptop orchestra
 //
 // PLAYER SETTINGS
-
+{
 // NetAddr of projection laptop (target)
 var destination = NetAddr(~destination, 57120);
 
@@ -100,28 +100,6 @@ tex.keyDownAction =	{ arg view, char, modifiers, unicode, keycode;
 	tex.stringColor_(Color.black);
 	win.front;
 
-	// End of File
+}.defer; // defer needed so that we can run this under a fork routine in player file
 
-
-
-
-	/*
-	case
-	{(unicode >= key_A) && (unicode <= key_Z)} {bufnum = unicode - key_A; this_rate = 0.6 * ~transp.value}
-	{(unicode >= key_a) && (unicode <= key_z)} {bufnum = unicode - key_a; this_rate = 1 * ~transp.value}
-	{(unicode >= key_0) && (unicode <= key_9)} {bufnum = rrand(0, b.media.size-1); this_rate = 5}
-	{(unicode >= 33) && (unicode <= 127)} {bufnum = rrand(0, b.media.size-1); this_rate = 2}
-	{true} {bufnum = -1}; // flag: not a letter nor number; don't play anything
-
-	// Call appropriate synth (mono or stereo) and post some info:
-	if( (bufnum != -1), {
-
-	case
-	{b.media[bufnum].numChannels == 1} {Synth("qwerty-mono-sample-playback", [\bufnum, bufnum, \rate, this_rate])}
-	{b.media[bufnum].numChannels == 2} {Synth("qwerty-stereo-sample-playback", [\bufnum, bufnum, \rate, this_rate])};
-
-	["Letter: "++ char, "Playback Speed: " ++ this_rate, "Number of Channels: " ++ b.media[bufnum].numChannels].postln;
-	["Sound File: " ++ b.media[bufnum].path].postln;
-	" ".postln;
-	});
-	*/
+// End of File
