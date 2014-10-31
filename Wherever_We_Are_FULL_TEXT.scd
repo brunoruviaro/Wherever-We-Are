@@ -5,7 +5,8 @@
 //
 // FULL TEXT
 
-
+// Housekeeping: close any existing SC windows
+Window.closeAll;
 
 // Full Text
 ~cage = "Wherever we are, what we hear is mostly noise. When we ignore it, it disturbs us. When we listen to it, we find it fascinating. The sound of a truck at fifty mph. Static between the stations. Rain. We want to capture and control these sounds, to use them, not as sound effects, but as musical instruments.   ";
