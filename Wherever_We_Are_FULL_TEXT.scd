@@ -108,3 +108,5 @@ a.collect{ |item| if(b.indexOf(item).notNil, { (item.asString ++ " is present").
 a.collect{ |item| if(b.indexOf(item).isNil, { (item.asString ++ " is NOT present").postln }) };
 
 x = a.collect{ |item| if(b.indexOf(item).isNil, { item }) }.reject{ |i| i.isNil };
+
+*/
