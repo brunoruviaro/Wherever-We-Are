@@ -18,21 +18,40 @@ The full quote is:
 
 > Wherever we are, what we hear is mostly noise. When we ignore it, it disturbs us. When we listen to it, we find it fascinating. The sound of a truck at fifty mph. Static between the stations. Rain. We want to capture and control these sounds, to use them, not as sound effects, but as musical instruments.
 
-### Set-up
+### Preliminary set-up
 
-1. Players open file "Where_We_Are_PLAYER.scd". Each player should have a unique number assigned to the variable ~player (from 1 to 6). The file "Where_We_Are_PLAYER_SETTINGS.scd" only needs to be opened once to adjust the proper IP address of the projection laptop (in the variable called "destination").
+1. DO ONCE: Players open file "Where_We_Are_PLAYER.scd" to pick their unique player number (from 1 to 6). This is assigned to the variable ~player. In addition, players have to specify the IP address of the computer that will be projecting letters on the screen. This is assigned to the variable ~destination. Assuming IP address and player numbers won't change, there is no need to open this file again in rehearsals and concert.
 
-2. The Wherever-We-Are folder should contain all scd files and a single subfolder with all the samples. This subfolder should be called "samples" (all lowercase). The audio files can be downloaded from: https://ccrma.stanford.edu/~ruviaro/audio/wherever_we_are/samples.zip
+2. DO ONCE: The Wherever-We-Are folder (clone of this github folder) should contain all scd files, plus a single subfolder with all the samples. This subfolder should be called "samples" (all lowercase), and can be downloaded from: https://ccrma.stanford.edu/~ruviaro/audio/wherever_we_are/samples.zip
 
-3. The projection laptop uses the file "Wherever_We_Are_PROJECTION.scd" to create the projection window. The projection window should be displayed in full screen mode on the wall or proper screen visible to the audience. The projection player controls fade time of the letters using the file "Wherever_We_Are_PROJECTION_FADETIME.scd" during performance.
+3. DO ONCE: Configure proper screen resolution for the projection in the file "Wherever_We_Are_SCREEN_RESOLUTIONS.scd". Two common resolutions are included by default (1024 x 768 and 1366 x 768). New resolutions can be easily created here to adapt for specific needs depending on the equipment used. Make sure only the desired resolution is commented out in the code. Occasionally, it might be necessary to tweak font size, margin, gap between letters, etc so that the full screen projection shows the full quote evenly distributed on the screen. This file will eventually be loaded automatically, so you don't have to open it every time.
 
-4. The file "Where_We_Are_SCREEN_RESOLUTIONS.scd" offers a couple of common resolutions. This file will be loaded by the PROJECTION file mentioned above, so you don't have to open this file every time. New resolutions can be easily created here to adapt for specific needs depending on the equipment used. Occasionally, it might be necessary to tweak font size, margin, gap between letters, etc so that the full screen projection shows the full quote evenly distributed on the screen.
+### Getting ready to play
 
-5. No other files need to be changed (in principle...)
+#### PROJECTION PLAYER
+
+* Do not use mirror screens (i.e., laptop screen separate from projection screen). 
+* Open file "Wherever_We_Are_PROJECTION.scd" to create the projection window.
+* Select all (ctrl+A), then evaluate (ctrl+Enter).
+* You should now see a gray, empty projection window displayed. Place it in the right location (projector screen).
+* Open file "Wherever_We_Are_PROJECTION_FADETIME.scd".
+* Run w.fullScreen if needed (this should hide Ubuntu's top bar from the projection screen)
+* During performance, you will be controling fade time of the letters.
+ 
+#### TYPING PLAYERS
+
+* Go to a terminal, find your way to the Wherever-We-Are folder, and run the program from there (see below).
+* Wait a few seconds as the program starts up (you will see updates on the terminal window).
+* If all goes well, you should now have the small "typing window" where you will type Cage's excerpt.
+
+Example: assuming the Wherever-We-Are folder was saved under Music/SuperCollider/, the two terminal commands would be:
+```
+cd Music/SuperCollider/Wherever-We-Are/
+sclang Wherever_We_Are_PLAYER.scd
+```
+The advantage of starting up the program via terminal (as opposed to actually opening the file) is that you avoid accidentally introducing a typo into the code, which might cause errors and inevitable panic just before a performance.
 
 ### How to play
-
-Projection player starts projection on screen. A gray empty screen is displayed. Fade time is set to a medium value (for example, 15 seconds).
 
 Typing players start typing their fragment of the quote, slowly. Each player has a specific segment of the text assigned to them: it is conveniently used as the title of their individual typing window. They should simply type that sequence of characters in order. If they make a mistake, a different sound is played. Spaces, commas, and periods are also valid characters that need to be typed in the right sequence.
 
