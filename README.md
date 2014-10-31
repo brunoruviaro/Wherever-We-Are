@@ -40,10 +40,15 @@ The full quote is:
  
 #### TYPING PLAYERS
 
-* Go to a terminal, find your way to the Wherever-We-Are folder, and run `sclang Wherever_We_Are_PLAYER.scd" from there.
+* Go to a terminal, find your way to the Wherever-We-Are folder, and run `sclang Wherever_We_Are_PLAYER.scd` from there.
 * Wait a few seconds as the program starts up (you will see updates on the terminal window).
 * If all goes well, you should now have the small "typing window" where you will type Cage's excerpt.
 
+Example: assuming the Wherever-We-Are folder was saved under Music/SuperCollider/, the terminal commands would be:
+```
+cd Music/SuperCollider/Wherever-We-Are/
+sclang Wherever_We_Are_PLAYER.scd
+```
 The advantage of starting up the program via terminal (as opposed to actually opening the file) is that you avoid accidentally introducing a typo into the code, which might cause errors and inevitable panic just before a performance.
 
 ### How to play
