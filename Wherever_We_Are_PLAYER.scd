@@ -5,7 +5,7 @@
 
 /*
 DO ONCE:
-- Choose your player number (variable ~player below).
+- Choose your player number (variable ~player below). Should be a number between 1 and 7.
 - Write in the IP address of the destination (projection laptop). IP address needs to be a string (between double quotes), for example: "129.210.101.32".
 - Save the changes.
 */
@@ -22,14 +22,22 @@ DO ONCE:
 	~player = 5;
 	("PLAYER NUMBER: " ++ ~player).postln;
 	1/2.wait;
+
 	~destination = "129.210.101.32";
 	("DESTINATION IP: " ++ ~destination).postln;
 	1/2.wait;
+
 	"Wherever_We_Are_FULL_TEXT.scd".loadRelative;
 	1/2.wait;
+
 	"LOADING SAMPLES...".postln;
 	"Wherever_We_Are_SYNTH.scd".loadRelative;
 	5.wait;
-	"Wherever_We_Are_PLAYER_SETTINGS.scd".loadRelative;
+
+	if(~player==7,
+		{ "Wherever_We_Are_EXTRA_PLAYER_SETTINGS.scd".loadRelative },
+		{ "Wherever_We_Are_PLAYER_SETTINGS.scd".loadRelative }
+	);
+
 	"END".postln;
 }.fork;
