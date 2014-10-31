@@ -4,7 +4,7 @@
 // PLAYER SETTINGS
 
 // NetAddr of projection laptop (target)
-var destination = NetAddr("192.168.1.109", 57120);
+var destination = NetAddr(~destination, 57120);
 
 var key_a = 97; // unicode for character "a"
 var key_z = 122;  // unicode for character "z"
