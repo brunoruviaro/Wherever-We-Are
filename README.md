@@ -6,13 +6,13 @@ Created for SCLOrk in 2013, second version in 2014.
 
 ### Description
 
-Seven players total.
+Seven players plus one "projection player" (can double as conductor).
 
-Six of the players type excerpts from a quote from John Cage on their laptops. Each letter plays a sample (mostly prepared piano, occasionally sounds of rain and trucks).
+Seven players type excerpts of a quote from John Cage. Each letter plays a sample (mostly prepared piano, occasionally sounds of rain and trucks).
 
-The seventh player runs a laptop connected to a projector receiving OSC messages from the other six players.
+The "projection" player runs a laptop connected to a projector receiving OSC messages from the other players.
 
-Each letter typed by a player flashes on screen for a few seconds, then fades out. The randomized appearance of letters on screen gives the audience the chance to read Cage's quote, not all at once, but put together as pieces of a puzzle. The seventh player controls fade time of these letters.
+Each letter typed by a player flashes on screen for a few seconds, then fades out. The randomized appearance of letters on screen gives the audience the chance to read Cage's quote, not all at once, but put together as pieces of a puzzle. The projection player controls fade time of these letters.
 
 The full quote is:
 
