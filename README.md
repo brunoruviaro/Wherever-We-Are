@@ -8,7 +8,7 @@ Created for SCLOrk in 2013, second version in 2014.
 
 Seven players plus one "projection player" (can double as conductor).
 
-Seven players type excerpts of a quote from John Cage. Each letter plays a sample (mostly prepared piano, occasionally sounds of rain and trucks).
+Seven players type excerpts of a quote from John Cage. Each letter plays a sample of prepared piano. When a typo occurs samples of rain and trucks are played.
 
 The "projection" player runs a laptop connected to a projector receiving OSC messages from the other players.
 
@@ -22,7 +22,7 @@ The full quote is:
 
 1. DO ONCE: Players open file "Where_We_Are_PLAYER.scd" to pick their unique player number (from 1 to 7). This is assigned to the variable ~player. In addition, players have to specify the IP address of the computer that will be projecting letters on the screen. This is assigned to the variable ~destination. Assuming IP address and player numbers won't change, there is no need to open this file again in rehearsals and concert.
 
-2. DO ONCE: The Wherever-We-Are folder (clone of this github folder) should contain all scd files, plus a single subfolder with all the samples. This subfolder should be called "samples" (all lowercase), and can be downloaded from: https://ccrma.stanford.edu/~ruviaro/audio/wherever_we_are/samples.zip
+2. DO ONCE: The Wherever-We-Are folder (clone of this github folder) should contain all scd files, plus a single subfolder with all the samples. This subfolder must be called "samples" (all lowercase), and can be downloaded from: https://ccrma.stanford.edu/~ruviaro/audio/wherever_we_are/samples.zip
 
 3. DO ONCE: Configure proper screen resolution for the projection in the file "Wherever_We_Are_SCREEN_RESOLUTIONS.scd". Two common resolutions are included by default (1024 x 768 and 1366 x 768). New resolutions can be easily created here to adapt for specific needs depending on the equipment used. Make sure only the desired resolution is commented out in the code. Occasionally, it might be necessary to tweak font size, margin, gap between letters, etc so that the full screen projection shows the full quote evenly distributed on the screen. This file will eventually be loaded automatically, so you don't have to open it every time.
 
@@ -35,7 +35,7 @@ The full quote is:
 * Do not use mirror screens (i.e., laptop screen separate from projection screen). 
 * Open file "Wherever_We_Are_PROJECTION.scd" to create the projection window.
 * Select all (ctrl+A), then evaluate (ctrl+Enter).
-* You should now see a gray, empty projection window displayed. Place it in the right location (projector screen).
+* You should now see a gray, empty projection window displayed. Place it on the projector screen.
 * Open file "Wherever_We_Are_PROJECTION_FADETIME.scd".
 * Run w.fullScreen if needed (this should hide Ubuntu's top bar from the projection screen)
 * During performance, you will be controling fade time of the letters.
@@ -72,12 +72,13 @@ The advantage of starting up the program via terminal (as opposed to actually op
 
 #### Break, then sparse ending
 
-* Suddenly, projection player changes fade time to very long (for exampe, 30 or 40 seconds). At the sime time, projection player gives a cue to other players to slow down the typing immediately so that texture becomes very rarified and filled with silence. It shouldn't take too long between the cue and the establishment rarified texture. The result on screen now is that sparse sounds trigger letters that stick around for a long time on screen.
-* Typing players type their sentence once or twice more, very sparse, then the piece ends with the last fading letters on screen.
+* Suddenly, projection player changes fade time to very long (for exampe, 30 or 40 seconds). At the sime time, projection player gives a cue to other players to slow down the typing immediately so that texture becomes very rarified and filled with silence. It shouldn't take too long between the cue and the establishment of the rarified texture. The result on screen now is that sparse sounds trigger letters that stick around for a long time on screen.
+* Typing players type their sentence once or twice more, very sparsely, then the piece ends with the last fading letters on screen.
 
 ### Final comments
 
-* The piece is open to variations or adaptations departing from this general shape. 
+* The piece is open to variations or adaptations departing from this general shape.
+* Players should not make mistakes (typos) on purpose. They should simply attempt to type their sentences as precisely as possible, only varying speed and rhythm. Mistakes are likely to occur as the typing speed goes up, and that's what will bring up the occasional rain and truck samples.
 * Generally speaking, the role of player #7 (the random yellow letters) is to create a shadow of interference in what players 1-6 are doing. The specific result of player 7's typing is an "erasure" of existing letters on the projection. The sounds coming from player 7 are similar to those from players 1-6, but heavily filtered.
 
 
