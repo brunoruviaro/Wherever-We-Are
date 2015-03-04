@@ -33,10 +33,10 @@ The full quote is:
 #### PROJECTION PLAYER
 
 * Do not use mirror screens (i.e., laptop screen separate from projection screen). 
-* Open file "Wherever_We_Are_PROJECTION.scd" to create the projection window.
+* Open file "Wherever_We_Are_PROJECTION.scd" to create the projection window. NOTE: Open the file using the SuperCollider IDE; do not run this from the terminal.
 * Select all (ctrl+A), then evaluate (ctrl+Enter).
 * You should now see a gray, empty projection window displayed. Place it on the projector screen.
-* Open file "Wherever_We_Are_PROJECTION_FADETIME.scd".
+* Open file "Wherever_We_Are_PROJECTION_FADETIME.scd". NOTE: Open the file using the SuperCollider IDE; do not run this from the terminal. You will be changing values in there in real time.
 * Run w.fullScreen if needed (this should hide Ubuntu's top bar from the projection screen)
 * During performance, you will be controling fade time of the letters.
  
@@ -55,12 +55,12 @@ The advantage of starting up the program via terminal (as opposed to actually op
 
 ### How to play
 
-* Typing players 1-6 take care of typing actual excerpts of text. The letters will show up on the projection screen in the specific sequence forming Cage's quote.
+* Typing players 1-6 take care of typing actual excerpts of text. The letters will show up on the projection screen in the specific sequence forming Cage's quote. Each player has a unique segment of the text assigned to them: the assigned segment is conveniently used as the title of their individual typing window.
 * Typing player 7 is free to type any text. These letters will show up on the projection screen in yellow, in random order.
 * Projection player simply changes the fade time of the letters at specific points in the piece (acting as a kind of conductor).
 
 #### Sparse beginning
-* Players 1-6 start typing their fragment of the quote, slowly. Each player has a specific segment of the text assigned to them: it is conveniently used as the title of their individual typing window. They should simply type that sequence of characters in order. If they make a mistake, a different sound is played. Spaces, commas, and periods are also valid characters that need to be typed in the correct sequence.
+* Players 1-6 start typing their fragment of the quote, slowly. They should simply type that sequence of characters in order. If they make a mistake, a different sound is played. Spaces, commas, and periods are also valid characters that need to be typed in the correct sequence.
 * Player 7 also starts typing slowly, being generally sparser than players 1-6.
 * Projection player simply sets fade time to a number around 10 or 15 seconds.
 
