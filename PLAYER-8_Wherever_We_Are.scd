@@ -6,15 +6,21 @@
 // This player's IP address should be entered into Players 1-7 file.
 // ===============================
 
+
+// Load screen
+"Wherever_We_Are_PROJECTION.scd".loadRelative;
+
+// Move it to projection screen, and make it full screen.
+
 w.fullScreen; // run this (ctrl+Enter) if needed. It should hide Ubuntu top bar in the projection screen.
 
-// w.endFullScreen
+w.endFullScreen
 
 // =========================
 // Projection player can control fade times by changing
 // and re-evaluating this variable during performance:
 
-~fadeTime = 16;
+~fadeTime = 13;
 
 // =========================
 

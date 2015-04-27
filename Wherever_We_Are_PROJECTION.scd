@@ -82,7 +82,7 @@ w.view.decorator = FlowLayout( w.view.bounds, margin: ~margin, gap: ~gap );
 
 
 // Listen for OSC messages from players:
-OSCdef(\triggerLetters, { |msg| ~fade.value(msg[1], 16) }, '/screen');
+OSCdef(\triggerLetters, { |msg| ~fade.value(msg[1], ~fadeTime) }, '/screen');
 
 OSCdef(\triggerTypo, { |msg| ~typo.value(msg[1]) }, '/screen/typo');
 
