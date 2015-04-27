@@ -1,7 +1,7 @@
 // Wherever We Are (2012-2014)
 // piece for laptop orchestra
 //
-// PLAYER SETTINGS
+// PLAYER SETTINGS (for players 1-6; player 7 has its own different file)
 {
 // NetAddr of projection laptop (target)
 var destination = NetAddr(~destination, 57120);

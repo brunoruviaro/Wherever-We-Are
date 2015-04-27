@@ -1,11 +1,10 @@
 // Wherever We Are (2012-2014)
 // piece for laptop orchestra
 //
-// PLAYER
+// PLAYER 7
 
 /*
 DO ONCE:
-- Choose your player number (variable ~player below). Should be a number between 1 and 7.
 - Write in the IP address of the destination (projection laptop). IP address needs to be a string (between double quotes), for example: "129.210.101.32".
 - Save the changes.
 */
@@ -13,13 +12,11 @@ DO ONCE:
 // HOW TO RUN: SELECT ALL (ctrl+A), EVALUATE (ctrl+Enter)
 // A preferable alternative is to simply run the following command from a terminal:
 
-// sclang Wherever_We_Are_PLAYER.scd
-
-// The advantage of doing via terminal is that there is no way to accidentally introduce a typo in the code, causing last minute errors and desperation just before the performance...
+// sclang PLAYER-7_Wherever_We_Are.scd
 
 {
 
-	~player = 5;
+	~player = 7;
 	("PLAYER NUMBER: " ++ ~player).postln;
 	1/2.wait;
 
@@ -34,10 +31,9 @@ DO ONCE:
 	"Wherever_We_Are_SYNTH.scd".loadRelative;
 	5.wait;
 
-	if(~player==7,
-		{ "Wherever_We_Are_EXTRA_PLAYER_SETTINGS.scd".loadRelative },
-		{ "Wherever_We_Are_PLAYER_SETTINGS.scd".loadRelative }
-	);
+	// Player 7 loads a different file
+	"Wherever_We_Are_PLAYER-7_SETTINGS.scd".loadRelative;
 
 	"END".postln;
+
 }.fork;
