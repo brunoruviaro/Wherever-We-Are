@@ -39,11 +39,11 @@ The full quote is:
 * The first line loads the projection window: you should now see a gray, empty projection window displayed. Place it on the projector screen. Make it fullscreen using the next line `w.fullScreen`.
 * During performance, you will be controling fade time of the letters using the line `~fadeTime = x`, where 'x' is the number of seconds the letters take to fade out on the screen.
  
-#### PLAYERS 1, 2, 3, 4, 5, and 6 (TYPING PLAYERS)
+#### PLAYERS 1, 2, 3, 4, 5, 6, and 7 (TYPING PLAYERS)
 
 * Go to a terminal, find your way to the Wherever-We-Are folder, and run the program from there (see below).
 * Wait a few seconds as the program starts up (you will see updates on the terminal window).
-* If all goes well, you should now have the small "typing window" where you will type Cage's excerpt.
+* If all goes well, you should now have the small "typing window" where you will type.
 
 Example: assuming the Wherever-We-Are folder was saved under Music/SuperCollider/, the two terminal commands for Player 1 would be:
 ```
