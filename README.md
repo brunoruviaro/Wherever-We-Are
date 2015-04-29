@@ -45,10 +45,10 @@ The full quote is:
 * Wait a few seconds as the program starts up (you will see updates on the terminal window).
 * If all goes well, you should now have the small "typing window" where you will type Cage's excerpt.
 
-Example: assuming the Wherever-We-Are folder was saved under Music/SuperCollider/, the two terminal commands would be:
+Example: assuming the Wherever-We-Are folder was saved under Music/SuperCollider/, the two terminal commands for Player 1 would be:
 ```
 cd Music/SuperCollider/Wherever-We-Are/
-sclang Wherever_We_Are_PLAYER.scd
+sclang PLAYER-1_Wherever_We_Are.scd
 ```
 The advantage of starting up the program via terminal (as opposed to actually opening the file in the SuperCollider IDE) is that you avoid accidentally introducing a typo into the code, which might cause errors and inevitable panic just before a performance.
 
