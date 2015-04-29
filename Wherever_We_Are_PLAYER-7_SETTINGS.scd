@@ -65,14 +65,15 @@ tex.keyDownAction =	{ arg view, char, modifiers, unicode, keycode;
 		destination.sendMsg("/screen/audience", letterIndex);
 
 		// 3. Play a sample locally
-		Synth("qwerty-mono-sample-playback-FILTER", [
-			\buffer, ~bufferArray.reject{ |x| x.isNil }.choose,
-			\rate, { rrand(0.8, 1.0) },
-			\amp, { rrand(0.02, 0.5) }.value ]);
-
-
-
-	});
+		Synth("qwerty-mono-sample-playback-FILTER",
+				[
+					\buffer, ~bufferArray.reject{ |x| x.isNil }.choose,
+					\rate, { rrand(1.5, 2.0) }.value,
+					\amp, { rrand(0.02, 0.5) }.value
+				]
+			)
+			} // end of ifTrue
+		); // end of if
 
 
 
