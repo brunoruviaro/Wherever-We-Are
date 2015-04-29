@@ -8,11 +8,11 @@ Created for SCLOrk in 2013, second version in 2014.
 
 For a minimum of 8 players.
 
-*Players 1-6* type excerpts of a quote from John Cage. Each letter plays a sample of prepared piano. When a typo occurs samples of rain and trucks are played. Text is displayed on projection to the audience.
+**Players 1-6** type excerpts of a quote from John Cage. Each letter plays a sample of prepared piano. When a typo occurs samples of rain and trucks are played. Text is displayed on projection to the audience.
 
-*Player 7* types any letters in any order, erasing letters from the projection screen. Player 7 produces sounds similar to players 1-6, but slightly processed.
+**Player 7** types any letters in any order, erasing letters from the projection screen. Player 7 produces sounds similar to players 1-6, but slightly processed.
 
-*Player 8* is the "projection" player. It receives OSC messages from the other players. This laptop is connected to a projector. The player controls fade time of letters on projection screen.
+**Player 8** is the "projection" player. It receives OSC messages from the other players. This laptop is connected to a projector. The player controls fade time of letters on projection screen.
 
 Each letter typed by a player flashes on screen for a few seconds, then fades out. The randomized appearance of letters on screen gives the audience the chance to read Cage's quote, not all at once, but put together as pieces of a puzzle. 
 
