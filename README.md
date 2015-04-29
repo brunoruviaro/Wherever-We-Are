@@ -71,7 +71,7 @@ The advantage of starting up the program via terminal (as opposed to actually op
 
 #### Break, then sparse ending
 
-* Suddenly, projection player changes fade time to very long (for exampe, 30 or 40 seconds). At the sime time, projection player gives a cue to other players to slow down the typing immediately so that texture becomes very rarified and filled with silence. It shouldn't take too long between the cue and the establishment of the rarified texture. The result on screen now is that sparse sounds trigger letters that stick around for a long time on screen.
+* Suddenly, projection player changes fade time to very long (for example, 30 or 40 seconds). At the sime time, projection player gives a cue to other players to slow down the typing immediately so that texture becomes very rarified and filled with silence. It shouldn't take too long between the cue and the establishment of the rarified texture. The result on screen now is that sparse sounds trigger letters that stick around for a long time on screen.
 * Typing players type their sentence once or twice more, very sparsely, then the piece ends with the last fading letters on screen.
 
 ### Final comments
