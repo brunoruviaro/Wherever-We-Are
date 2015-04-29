@@ -4,15 +4,17 @@ Wherever-We-Are
 Piece for laptop orchestra.
 Created for SCLOrk in 2013, second version in 2014.
 
-### Description
+### Summary
 
-Seven players plus one "projection player" (can double as conductor).
+For a minimum of 8 players.
 
-Seven players type excerpts of a quote from John Cage. Each letter plays a sample of prepared piano. When a typo occurs samples of rain and trucks are played.
+*Players 1-6* type excerpts of a quote from John Cage. Each letter plays a sample of prepared piano. When a typo occurs samples of rain and trucks are played. Text is displayed on projection to the audience.
 
-The "projection" player runs a laptop connected to a projector receiving OSC messages from the other players.
+*Player 7* types any letters in any order, erasing letters from the projection screen. Player 7 produces sounds similar to players 1-6, but slightly processed.
 
-Each letter typed by a player flashes on screen for a few seconds, then fades out. The randomized appearance of letters on screen gives the audience the chance to read Cage's quote, not all at once, but put together as pieces of a puzzle. The projection player controls fade time of these letters.
+*Player 8* is the "projection" player. It receives OSC messages from the other players. This laptop is connected to a projector. The player controls fade time of letters on projection screen.
+
+Each letter typed by a player flashes on screen for a few seconds, then fades out. The randomized appearance of letters on screen gives the audience the chance to read Cage's quote, not all at once, but put together as pieces of a puzzle. 
 
 The full quote is:
 
@@ -20,27 +22,24 @@ The full quote is:
 
 ### Preliminary set-up
 
-1. DO ONCE: Players open file "Where_We_Are_PLAYER.scd" to pick their unique player number (from 1 to 7). This is assigned to the variable ~player. In addition, players have to specify the IP address of the computer that will be projecting letters on the screen. This is assigned to the variable ~destination. Assuming IP address and player numbers won't change, there is no need to open this file again in rehearsals and concert.
+1. DO ONCE: Players open their respective file (beginning with PLAYER-1, PLAYER-2, etc.). They have to specify the IP address of the computer that will be projecting letters on the screen. This should be written (assigned) to the variable ~destination. Assuming IP address and player numbers won't change, there is no need to open this file again in rehearsals and concert.
 
-2. DO ONCE: The Wherever-We-Are folder (clone of this github folder) should contain all scd files, plus a single subfolder with all the samples. This subfolder must be called "samples" (all lowercase), and can be downloaded from: https://ccrma.stanford.edu/~ruviaro/audio/wherever_we_are/samples.zip
+2. DO ONCE: The Wherever-We-Are folder (clone of this github folder) contains all needed SuperCollider (*.scd) files. In addition, all players need to download a folder with samples from here: https://ccrma.stanford.edu/~ruviaro/audio/wherever_we_are/samples.zip - This folder must be copied inside the main Wherever-We-Are folder, and must be called "samples" (all lowercase). 
 
 3. DO ONCE: Configure proper screen resolution for the projection in the file "Wherever_We_Are_SCREEN_RESOLUTIONS.scd". Two common resolutions are included by default (1024 x 768 and 1366 x 768). New resolutions can be easily created here to adapt for specific needs depending on the equipment used. Make sure only the desired resolution is commented out in the code. Occasionally, it might be necessary to tweak font size, margin, gap between letters, etc so that the full screen projection shows the full quote evenly distributed on the screen. This file will eventually be loaded automatically, so you don't have to open it every time.
 
-4. Laptops need to be connected to a local network to exchange OSC messages.
+4. Laptops need to be connected to a local network (wifi OK) to exchange OSC messages.
 
 ### Getting ready to play
 
-#### PROJECTION PLAYER
+#### PLAYER 8 (PROJECTION PLAYER)
 
 * Do not use mirror screens (i.e., laptop screen separate from projection screen). 
-* Open file "Wherever_We_Are_PROJECTION.scd" to create the projection window. NOTE: Open the file using the SuperCollider IDE; do not run this from the terminal.
-* Select all (ctrl+A), then evaluate (ctrl+Enter).
-* You should now see a gray, empty projection window displayed. Place it on the projector screen.
-* Open file "Wherever_We_Are_PROJECTION_FADETIME.scd". NOTE: Open the file using the SuperCollider IDE; do not run this from the terminal. You will be changing values in there in real time.
-* Run w.fullScreen if needed (this should hide Ubuntu's top bar from the projection screen)
-* During performance, you will be controling fade time of the letters.
+* Open file "PLAYER-8_Wherever_We_Are.scd" in SuperCollider and run it line by line (Control + Enter on a line to run it).
+* The first line loads the projection window: you should now see a gray, empty projection window displayed. Place it on the projector screen. Make it fullscreen using the next line `w.fullScreen`.
+* During performance, you will be controling fade time of the letters using the line `~fadeTime = x`, where 'x' is the number of seconds the letters take to fade out on the screen.
  
-#### TYPING PLAYERS
+#### PLAYERS 1, 2, 3, 4, 5, and 6 (TYPING PLAYERS)
 
 * Go to a terminal, find your way to the Wherever-We-Are folder, and run the program from there (see below).
 * Wait a few seconds as the program starts up (you will see updates on the terminal window).
@@ -51,18 +50,18 @@ Example: assuming the Wherever-We-Are folder was saved under Music/SuperCollider
 cd Music/SuperCollider/Wherever-We-Are/
 sclang Wherever_We_Are_PLAYER.scd
 ```
-The advantage of starting up the program via terminal (as opposed to actually opening the file) is that you avoid accidentally introducing a typo into the code, which might cause errors and inevitable panic just before a performance.
+The advantage of starting up the program via terminal (as opposed to actually opening the file in the SuperCollider IDE) is that you avoid accidentally introducing a typo into the code, which might cause errors and inevitable panic just before a performance.
 
 ### How to play
 
-* Typing players 1-6 take care of typing actual excerpts of text. The letters will show up on the projection screen in the specific sequence forming Cage's quote. Each player has a unique segment of the text assigned to them: the assigned segment is conveniently used as the title of their individual typing window.
-* Typing player 7 is free to type any text. These letters will show up on the projection screen in yellow, in random order.
-* Projection player simply changes the fade time of the letters at specific points in the piece (acting as a kind of conductor).
+* Players 1-6 take care of typing actual excerpts of text. The letters will show up on the projection screen in the specific sequence forming Cage's quote. Each player has a unique segment of the text assigned to them: the assigned segment is conveniently used as the title of their individual typing window.
+* Player 7 is free to type any text. These letters will show up on the projection screen in yellow, in random order.
+* Player 8 (projection player) simply changes the fade time of the letters at specific points in the piece (and may act as conductor as well).
 
 #### Sparse beginning
 * Players 1-6 start typing their fragment of the quote, slowly. They should simply type that sequence of characters in order. If they make a mistake, a different sound is played. Spaces, commas, and periods are also valid characters that need to be typed in the correct sequence.
 * Player 7 also starts typing slowly, being generally sparser than players 1-6.
-* Projection player simply sets fade time to a number around 10 or 15 seconds.
+* Player 8 simply sets fade time to a number around 10 or 15 seconds.
 
 #### Progression towards revealing the full text
 
