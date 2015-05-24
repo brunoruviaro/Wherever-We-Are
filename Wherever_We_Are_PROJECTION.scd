@@ -79,7 +79,8 @@ w.view.decorator = FlowLayout( w.view.bounds, margin: ~margin, gap: ~gap );
 	~fadeFunctionArray[letterIndex] = routine.play;
 
 };
-
+// Init fade time
+~fadeTime = 8;
 
 // Listen for OSC messages from players:
 OSCdef(\triggerLetters, { |msg| ~fade.value(msg[1], ~fadeTime) }, '/screen');
