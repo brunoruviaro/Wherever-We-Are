@@ -13,17 +13,22 @@ var key_Z = 90; // unicode for character "Z" (capital Z)
 var key_0 = 48; // unicode for character "0" (zero)
 var key_9 = 57; // unicode for character "9" (nine)
 
-var len = 900; // typing window size: length
-var hi = 100; // typing window size: height
+var len = Window.screenBounds.width; // typing window size: length
+var hi = Window.screenBounds.height; // typing window size: height
 var pointer = 0;
 
 // Typing window
 var win = Window.new(
 	name: ~splitCage[~player],
-	bounds: Rect(500, Window.screenBounds.height-600, len, hi));
+	bounds: Rect(0, 0, len, hi));
 
 // Text container
-var tex = StaticText(win, Rect(5, 5, len-10, hi-10)).focus(true);
+var tex = StaticText(win, Rect(1, 1, win.bounds.width-2, win.bounds.height-10)).focus(true);
+
+	tex.background = Color.black;
+	tex.stringColor = Color.white;
+	tex.align = \center;
+	tex.font_(Font("Courier", 36));
 
 // What to do at each key press
 tex.keyDownAction =	{ arg view, char, modifiers, unicode, keycode;
@@ -78,7 +83,7 @@ tex.keyDownAction =	{ arg view, char, modifiers, unicode, keycode;
 						destination.sendMsg("/screen/typo", pointer + ~sentenceIndex[~player]);
 						{ tex.stringColor = Color.red }.defer;
 						0.3.wait;
-						{ tex.stringColor = Color.black }.defer;
+						{ tex.stringColor = Color.white }.defer;
 					}.fork;
 					// if typo, play a noise (rain, truck, static)
 					Synth("qwerty-mono-sample-playback", [
@@ -96,8 +101,7 @@ tex.keyDownAction =	{ arg view, char, modifiers, unicode, keycode;
 
 };
 
-	tex.font_(Font("Courier", 30));
-	tex.stringColor_(Color.black);
+
 	win.front;
 
 }.defer; // defer needed so that we can run this under a fork routine in player file
