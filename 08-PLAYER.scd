@@ -12,16 +12,42 @@
 
 // Move it to projection screen, and make it full screen.
 
-w.fullScreen; // run this (ctrl+Enter) if needed. It should hide Ubuntu top bar in the projection screen.
+w.fullScreen; // run this (ctrl+Enter) to hide Ubuntu top bar in the projection screen.
 
+// at the end of piece only:
 w.endFullScreen
 
 // =========================
 // Projection player can control fade times by changing
 // and re-evaluating this variable during performance:
 
-~fadeTime = 13;
+~fadeTime = 10;
 
 // =========================
 
 
+(
+~here = NetAddr("localhost", 57120);
+
+Pbindef(\wow, \type, \rest).play;
+
+Pbindef(\wow,
+	\type, \rest,
+	\dur, 0.05,
+	\pos, Pseq((0..304), inf),
+	\osc, Pfunc({ |ev| ~here.sendMsg('/screen', ev[\pos]) })
+)
+)
+
+// try others
+Pbindef(\wow, \pos, Pseq((0..304), inf));
+
+Pbindef(\wow, \pos, Prand((0..304), inf));
+
+Pbindef(\wow, \dur, 1 );
+
+Pbindef(\wow, \dur, Pn(Pgeom(0.01, 1.2, 30)) );
+
+Pbindef(\wow, \pos, (Pseries(0, 30, inf) + Pwhite(0, 1)).fold(0, 304));
+
+Pbindef(\wow).stop;
