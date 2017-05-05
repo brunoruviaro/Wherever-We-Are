@@ -16,7 +16,7 @@ Window.closeAll;
 
 // Create new window
 w = Window.new("fullscreen", Rect(0, 0, ~screenWidth, ~screenHeight)).front;
-w.background = Color.white;
+w.background = Color.black;
 
 // The numbers are the gaps and margins between objects inside window
 w.view.decorator = FlowLayout( w.view.bounds, margin: ~margin, gap: ~gap );
@@ -24,7 +24,7 @@ w.view.decorator = FlowLayout( w.view.bounds, margin: ~margin, gap: ~gap );
 // Letter containers
 ~letterArray = Array.fill(~cage.size, { arg count;
 	var txt = StaticText(w.view, ~bounds);
-	txt.background = Color.white;
+	txt.background = Color.black;
 	txt.stringColor = Color(0, 0, 0, 0); // transparent
 	txt.font = Font("Courier", ~fontSize, false);
 	txt.align = \center;
@@ -40,7 +40,7 @@ w.view.decorator = FlowLayout( w.view.bounds, margin: ~margin, gap: ~gap );
 
 	routine = Routine { while( { alpha > 0 },
 		{
-			{ ~letterArray[letterIndex].stringColor = Color(0, 0, 0, alpha) }.defer;
+			{ ~letterArray[letterIndex].stringColor = Color(1, 1, 1, alpha) }.defer;
 			alpha = max(0, alpha - 0.02);
 			(fadeTime/50).wait;
 		}
