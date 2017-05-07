@@ -8,6 +8,7 @@
 // Mostly for demonstration.
 // ===============================
 
+s.boot;
 
 // Load full text
 "Wherever_We_Are_FULL_TEXT.scd".loadRelative;
@@ -21,122 +22,52 @@
 // Load localhost address
 ~here = NetAddr("localhost", 57120);
 
-// Load a couple extra functions
+// Load a few more things (autoplay-specific)
 "Autoplay_Functions.scd".loadRelative;
 
-
-// *******
-// PLAYERS
+// Start stop players
 (
-Pbindef(\p1, \type, \rest).play;
-Pbindef(\p2, \type, \rest).play;
-Pbindef(\p3, \type, \rest).play;
-Pbindef(\p4, \type, \rest).play;
-Pbindef(\p5, \type, \rest).play;
-Pbindef(\p6, \type, \rest).play;
+s.volume = -12;
+Pbindef(\p1).play;
+Pbindef(\p2).play;
+Pbindef(\p3).play;
+Pbindef(\p4).play;
+Pbindef(\p5).play;
+Pbindef(\p6).play;
 )
 
+(
+Pbindef(\p1).pause;
+Pbindef(\p2).pause;
+Pbindef(\p3).pause;
+Pbindef(\p4).pause;
+Pbindef(\p5).pause;
+Pbindef(\p6).pause;
+)
 
-Pbindef(\p1, \dur, 1);
+// Choose demo mode
+~demo1.value;
 
-// Add content to players
+~demo2.value;
+
+
+
+
 (
 Pbindef(\p1,
-	\type, \rest,
-	\dur, Pwhite(0.05, 1),
-	\pointer, Pseq((0..~splitCage[1].size-1), inf),
-	\doIt, Pfunc({arg ev;
-		[
-			~playCharacter,
-			~playTypo,
-		]
-		.wchoose([0.9, 0.1]) // 10% chance of a typo
-		.value(pointer: ev[\pointer], thisPlayer: 1);
-
-	})
-
-); // end of player
-
-Pbindef(\p2,
-	\type, \rest,
-	\dur, Pwhite(0.05, 1),
-	\pointer, Pseq((0..~splitCage[2].size-1), inf),
-	\doIt, Pfunc({arg ev;
-		[
-			~playCharacter,
-			~playTypo,
-		]
-		.wchoose([0.9, 0.1]) // 10% chance of a typo
-		.value(pointer: ev[\pointer], thisPlayer: 2);
-
-	})
-
-); // end of player
-
-Pbindef(\p3,
-	\type, \rest,
-	\dur, Pwhite(0.05, 1),
-	\pointer, Pseq((0..~splitCage[3].size-1), inf),
-	\doIt, Pfunc({arg ev;
-		[
-			~playCharacter,
-			~playTypo,
-		]
-		.wchoose([0.9, 0.1]) // 10% chance of a typo
-		.value(pointer: ev[\pointer], thisPlayer: 3);
-
-	})
-
-); // end of player
-
-Pbindef(\p4,
-	\type, \rest,
-	\dur, Pwhite(0.05, 1),
-	\pointer, Pseq((0..~splitCage[4].size-1), inf),
-	\doIt, Pfunc({arg ev;
-		[
-			~playCharacter,
-			~playTypo,
-		]
-		.wchoose([0.9, 0.1]) // 10% chance of a typo
-		.value(pointer: ev[\pointer], thisPlayer: 4);
-
-	})
-
-); // end of player
-
-Pbindef(\p5,
-	\type, \rest,
-	\dur, Pwhite(0.05, 1),
-	\pointer, Pseq((0..~splitCage[5].size-1), inf),
-	\doIt, Pfunc({arg ev;
-		[
-			~playCharacter,
-			~playTypo,
-		]
-		.wchoose([0.9, 0.1]) // 10% chance of a typo
-		.value(pointer: ev[\pointer], thisPlayer: 5);
-
-	})
-
-); // end of player
-
-Pbindef(\p6,
-	\type, \rest,
-	\dur, Pwhite(0.05, 1),
-	\pointer, Pseq((0..~splitCage[6].size-1), inf),
-	\doIt, Pfunc({arg ev;
-		[
-			~playCharacter,
-			~playTypo,
-		]
-		.wchoose([0.9, 0.1]) // 10% chance of a typo
-		.value(pointer: ev[\pointer], thisPlayer: 6);
-
-	})
-
-); // end of player
+	\sparseness, Pseg( Pseq([10, 1/2, 1],inf), Pseq([30, 10], inf), \linear),
+	\dur, 0.1, //Pwhite(0.1, 1) * Pkey(\sparseness)
+);
 )
+
+
+
+Pbindef(\p6, \dur, 1);
+
+// Add content to players
+
+
+
 
 
 
