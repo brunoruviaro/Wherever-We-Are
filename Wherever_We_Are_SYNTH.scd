@@ -31,20 +31,22 @@ s.waitForBoot({
 
 	// Create a SynthDef to play samples
 	SynthDef("qwerty-mono-sample-playback", {
-		arg buffer = 0, rate = 1, amp = 0.5;
+		arg bus = 0, buffer = 0, rate = 1, amp = 0.5, pan = -1;
 		var out;
 		out = PlayBuf.ar(1, buffer, BufRateScale.kr(buffer) * rate, doneAction: 2);
-		Out.ar(0, [out, out] * amp)
+		out = Pan2.ar(out, pan);
+		Out.ar(bus, out * amp)
 	}).add;
 
 	// Create a SynthDef to play filtered samples - FOR PLAYER 7
 	SynthDef("qwerty-mono-sample-playback-FILTER", {
-		arg buffer = 0, rate = 1, amp = 0.5;
+		arg bus = 0, buffer = 0, rate = 1, amp = 0.5, pan = -1;
 		var out, env;
 		env = Env.perc(0.01, 6, amp, 4).kr(2);
 		out = PlayBuf.ar(1, buffer, BufRateScale.kr(buffer) * rate);
 		out = BPF.ar(out, LFNoise2.ar(1/10).range(100, 5000), 0.1);
-		Out.ar(0, [out, out] * env)
+		out = Pan2.ar(out, pan);
+		Out.ar(bus, out * env)
 	}).add;
 
 	["Number of Samples Loaded Successfully: " ++ ~bufferArray.size].postln;

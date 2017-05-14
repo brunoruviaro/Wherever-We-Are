@@ -2,8 +2,8 @@
 // AUTOPLAY FUNCTIONS IN THIS BLOCK
 // 1- PLAY CHARACTER
 // 2- PLAY TYPO
+// 3- PLAY YELLOW
 // 3- PBINDEFS (scores)
-
 
 
 
@@ -31,7 +31,9 @@
 	Synth("qwerty-mono-sample-playback", [
 		\buffer, ~bufferArray[index],
 		\rate, this_rate,
-		\amp, { rrand(0.02, 0.5) }.value ]);
+		\amp, { rrand(0.02, 0.5) }.value,
+		\pan, [ -1, -0.6, -0.2, 0.2, 0.6, 1 ].at(thisPlayer - 1)
+	]);
 
 	// send character to remote screen.
 	~here.sendMsg("/screen", pointer + ~sentenceIndex[thisPlayer]);
@@ -68,7 +70,8 @@
 	Synth("qwerty-mono-sample-playback", [
 		\buffer, ~bufferArray[ [40, 47, 48, 52, 54, 66, 69, 79, 82, 86, 102].choose ],
 		\rate, { rrand(0.8, 1.5) }.value,
-		\amp, { rrand(0.1, 0.2) }.value
+		\amp, { rrand(0.1, 0.2) }.value,
+		\pan, [ -1, -0.6, -0.2, 0.2, 0.6, 1 ].at(thisPlayer - 1)
 
 	]);
 	"TYPO!"; // will post automatically as it is the last thing
@@ -77,6 +80,66 @@
 
 
 
+
+
+
+
+
+// ================================
+// PLAY YELLOW
+// ================================
+// this function emulates player 7
+// yellow characters on screen
+
+~playYellow = {
+
+	// send yellow random letter to screen
+	~here.sendMsg("/screen/audience", ~cage.ascii.choose);
+
+	// play a sample
+	Synth("qwerty-mono-sample-playback-FILTER",
+		[
+			\buffer, ~bufferArray.reject{ |x| x.isNil }.choose,
+			\rate, { rrand(1.5, 2.0) }.value,
+			\amp, { rrand(0.02, 0.5) }.value,
+			\pan, { rrand(-1.0, 1.0) }.value
+		]
+	);
+
+	"YELLOW!"; // will post automatically as it is the last thing
+
+}; // end of playYellow function
+
+
+
+
+
+
+
+
+~startAll = {
+	s.volume = -12;
+	Pbindef(\p1).play;
+	Pbindef(\p2).play;
+	Pbindef(\p3).play;
+	Pbindef(\p4).play;
+	Pbindef(\p5).play;
+	Pbindef(\p6).play;
+	Pbindef(\p7).play;
+	Pbindef(\fade).play;
+};
+
+
+~pauseAll = {
+	Pbindef(\p1).pause;
+	Pbindef(\p2).pause;
+	Pbindef(\p3).pause;
+	Pbindef(\p4).pause;
+	Pbindef(\p5).pause;
+	Pbindef(\p6).pause;
+	Pbindef(\p7).pause;
+	Pbindef(\fade).pause;
+};
 
 
 
@@ -192,15 +255,32 @@
 
 	); // end of player
 
+	Pbindef(\p7,
+		\type, \rest,
+		\dur, Prand([
+			Pwhite(0.1, 0.5, 1),
+			Pwhite(0.1, 0.5, 2),
+			Pwhite(0.1, 0.5, 3),
+			Pwhite(0.1, 0.5, 4),
+			10, 5, 6, 1, 4
+			],
+			inf
+		),
+		\doIt, Pfunc({ ~playYellow.value })
+	); // end of player
+
+	Pbindef(\fade,
+		\type, \rest,
+		\dur, Pwhite(1, 10),
+		\fade, Pfunc({ ~fadeTime = rrand(1, 20); ["FADE", ~fadeTime].postln; })
+	); // end of player
+
 	"Demo 1 loaded: basic sequential play, medium-fast, 10% typos";
 
 }; //end of pbindef score
 
-
-// Load demo1 as default at start-up
+// load demo 1 values by default
 ~demo1.value;
-
-
 
 // ================
 // DEMO 2 SCORE
@@ -212,33 +292,91 @@
 
 ~demo2 = {
 
-	var sparseness = Pseg( Pseq([10, 1, 1],inf), Pseq([30, 10], inf), \linear);
-	var dur = Pwhite(0.1, 1) * Pkey(\time);
+	~myDur = {
+		Pseg(
+			// LEVELS
+			Pseq([
+				0, // start slow
+				// intermediate steps
+				rrand(0.2, 0.5),
+				rrand(0.3, 0.7),
+				rrand(0.7, 0.9),
+				1, // arrive at max speed
+
+				rrand(0.9, 1), // stay at max speed
+
+				rrand(0, 0.05), // return to slow
+				0.1, // mid slow
+				0 // final slow
+			]),
+			// TIMES
+			Pseq([
+				// go from slow to first step in
+				40,
+				// from 2nd to 3rd in
+				25,
+				// from 3rd to 4th in
+				20,
+				// arrive at max speed in
+				10,
+				// stay at max speed for
+				16,
+				// suddently return to slow in
+				1,
+				// reach mid slow in
+				15,
+				// final rallentando in
+				20
+			]),
+			\linear
+		).linexp(0, 1, 10, 0.1);
+	};
 
 	Pbindef(\p1,
-		\sparseness, sparseness,
-		\dur, dur
+		\dur, ~myDur.value,
 	);
+
 	Pbindef(\p2,
-		\sparseness, sparseness,
-		\dur, dur
+		\dur, ~myDur.value
 	);
+
 	Pbindef(\p3,
-		\sparseness, sparseness,
-		\dur, dur
+		\dur, ~myDur.value
 	);
+
 	Pbindef(\p4,
-		\sparseness, sparseness,
-		\dur, dur
+		\dur, ~myDur.value
 	);
+
 	Pbindef(\p5,
-		\sparseness, sparseness,
-		\dur, dur
+		\dur, ~myDur.value
 	);
+
 	Pbindef(\p6,
-		\sparseness, sparseness,
-		\dur, dur
+		\dur, ~myDur.value
 	);
+
+	Pbindef(\p7,
+		\type, \rest,
+		\timer, ~myDur.value,
+		\dur, Prand([
+			Pwhite(0.1, 0.5, 1),
+			Pwhite(0.1, 0.5, 2),
+			Pwhite(0.1, 0.5, 3),
+			Pwhite(0.05, 0.2, 4),
+			10, 5, 6, 1, 4
+			],
+			inf
+		),
+		\doIt, Pfunc({ ~playYellow.value })
+	);
+
+	Pbindef(\fade,
+		\type, \rest,
+		\dur, Pwhite(1, 10),
+		\fade, Pfunc({ ~fadeTime = rrand(1, 20); ["FADE", ~fadeTime].postln; })
+	); // end of player
+
 
 	"Demo 2 loaded";
 
