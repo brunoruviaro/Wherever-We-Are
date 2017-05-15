@@ -118,7 +118,7 @@
 
 
 ~startAll = {
-	s.volume = -12;
+	s.volume = -4;
 	Pbindef(\p1).play;
 	Pbindef(\p2).play;
 	Pbindef(\p3).play;
@@ -327,7 +327,7 @@
 				15,
 				// final rallentando in
 				20
-			]),
+			]*2),
 			\linear
 		).linexp(0, 1, 10, 0.1);
 	};

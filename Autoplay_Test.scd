@@ -25,8 +25,7 @@ s.boot;
 // Load a few more things (autoplay-specific)
 "Autoplay_Functions.scd".loadRelative;
 
-
-~startAll.value;
+SystemClock.sched(10, { ~startAll.value; });
 
 ~pauseAll.value;
 
