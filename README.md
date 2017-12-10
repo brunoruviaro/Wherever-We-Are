@@ -4,6 +4,8 @@ Wherever-We-Are
 Piece for laptop orchestra.
 Created for SCLOrk in 2013, second version in 2014.
 
+![pic](Wherever-We-Are/pic1.jpg?raw=true) 
+
 ### Summary
 
 For a minimum of 8 players.
