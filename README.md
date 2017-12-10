@@ -4,7 +4,8 @@ Wherever-We-Are
 Piece for laptop orchestra.
 Created for SCLOrk in 2013, second version in 2014.
 
-![pic](Wherever-We-Are/pic1.jpg?raw=true) 
+![pic1](https://raw.github.com/brunoruviaro/Wherever-We-Are/master/pic1.jpg)
+![pic2](https://raw.github.com/brunoruviaro/Wherever-We-Are/master/pic2.jpg)
 
 ### Summary
 
