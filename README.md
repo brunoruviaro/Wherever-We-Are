@@ -4,8 +4,16 @@ Wherever-We-Are
 Piece for laptop orchestra.
 Created for SCLOrk in 2013, second version in 2014.
 
+### Pictures
+
 ![pic1](https://raw.github.com/brunoruviaro/Wherever-We-Are/master/pic1.jpg)
 ![pic2](https://raw.github.com/brunoruviaro/Wherever-We-Are/master/pic2.jpg)
+
+### Sound example
+
+Live concert recording from June 2, 2016 - Santa Clara Laptop Orchestra (SCLOrk). Music Recital Hall, Santa Clara University. 
+
+[https://soundcloud.com/scu-electronic-music/07-sclork-2016-wherever-we-are]([https://soundcloud.com/scu-electronic-music/07-sclork-2016-wherever-we-are])
 
 ### Summary
 
