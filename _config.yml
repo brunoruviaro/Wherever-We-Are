@@ -1,0 +1,8 @@
+title: Wherever We Are
+description: Laptop Orchestra piece by Bruno Ruviaro
+google_analytics: 
+show_downloads: true
+theme: jekyll-theme-slate
+
+gems:
+  - jekyll-mentions
